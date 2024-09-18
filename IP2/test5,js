@@ -1,0 +1,26 @@
+const express = require('express');
+
+const app = express()   
+const router = express.Router()  
+
+app.set('view engine' , 'ejs')
+
+app.listen(3000,()=>{
+    console.log("Hello from server")
+})
+
+app.get("/",(req,res)=>{
+    res.send('Hi')
+})
+
+// (500) - internal server error 
+// (403) - No access 
+app.get("/nothi",(req,res)=>{
+    res.sendStatus(200).send('Not Hi')  // method chaning 
+    res.download('test5.js')
+    // res.render("index") // need to use app.set('view engine' , 'ejs') 
+    // to prepare for index.ejs to be able to show the thml page
+})
+
+
+module.exports = router
